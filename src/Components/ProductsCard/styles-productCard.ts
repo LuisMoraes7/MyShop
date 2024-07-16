@@ -5,7 +5,8 @@ export const Card = styled.article`
     width: 100%;
     padding: 1rem 2rem;
     box-shadow: 2px 2px 18px #0000006b;
-    margin: 0 1.2rem;
+    margin: 0 auto;
+    
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -37,7 +38,7 @@ export const ReviewPriceContainer = styled.div`
 
 export const Review = styled.span`
     display: flex;
-    gap: 1px;
+    gap: 2px;
     font-size: 0.75rem;
     align-items: center;
     svg{
@@ -70,8 +71,25 @@ export const AddButton = styled.button`
         color: white;
         font-weight: 500;
 
-        &:hover{
-            background-color: darkblue;
-        }
+        
+`
+
+export const RemoveButton = styled.button`
+        border: none;
+        border-radius: 5px;
+        height: 30px;
+        padding: 0 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        font-size: 0.75rem;
+        margin-top: 1rem;
+        width: 100%;
+        background: #D64550;
+        color: black;
+        font-weight: 500;
+
+        
 `
 

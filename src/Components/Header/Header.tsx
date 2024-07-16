@@ -1,13 +1,20 @@
 import { useDispatch, useSelector } from "react-redux"
 import * as S from "./styles-header"
 import { FiLogIn, FiLogOut, FiShoppingCart } from "react-icons/fi"
-import { RootReducer } from "../../redux/root-reducer";
 import { useState } from "react";
 import { Cart } from "../Cart/Cart";
+import { RootState } from "../../redux/store";
+import { ProductsList } from "../ProductsList/ProductsList"; // Certifique-se de importar corretamente
 
-export const Header: React.FC = () => {
-    const [showCart, setShowCart] = useState(false)
-    const { user } = useSelector((rootReducer: RootReducer) => rootReducer.userReducer);
+interface HeaderProps{
+    showCart: boolean,
+    setShowCart: (show: boolean) => void;
+
+}
+export const Header: React.FC<HeaderProps> = ({ showCart, setShowCart }) => {
+    
+    
+    const user = useSelector((state: RootState) => state.user.user);
     const isLogged = user !== null;
     const dispatch = useDispatch()
     function handleUserAuth(){

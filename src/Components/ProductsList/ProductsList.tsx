@@ -3,11 +3,15 @@ import * as S from './productslist-style'
 import { Products } from '../../Data/products'
 
 
-export const ProductsList: React.FC = () => {
+interface ProductsListProps {
+    showCart: boolean;
+}
+
+export const ProductsList: React.FC<ProductsListProps> = ( {showCart} ) => {
     //pode-se utilizar UseEffect para puxar os dados da API de produtos
     
     return(
-        <S.Container>
+        <S.Container showCart={showCart}>
             { Products.map((producto) => (
                 <ProductCard key={producto.id} product={producto}/>
             ))}
