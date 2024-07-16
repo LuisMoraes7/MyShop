@@ -4,7 +4,8 @@ import { FiLogIn, FiLogOut, FiShoppingCart } from "react-icons/fi"
 import { useState } from "react";
 import { Cart } from "../Cart/Cart";
 import { RootState } from "../../redux/store";
-import { ProductsList } from "../ProductsList/ProductsList"; // Certifique-se de importar corretamente
+import { ProductsList } from "../ProductsList/ProductsList";    
+import { login, logout, userSlice } from "../../redux/User/user-slice";
 
 interface HeaderProps{
     showCart: boolean,
@@ -17,22 +18,35 @@ export const Header: React.FC<HeaderProps> = ({ showCart, setShowCart }) => {
     const user = useSelector((state: RootState) => state.user.user);
     const isLogged = user !== null;
     const dispatch = useDispatch()
+
     function handleUserAuth(){
         //usuario nao logado    
         if (user === null){
+            dispatch(
+                login({
+                name: 'joca',
+                email: 'joca@gmail.com'
+            }));
+            
+            
+            //forma antiga:
             //despachar a action
-            dispatch({
-                type: 'user/login',
-                payload: {
-                    name: 'Joca',
-                    email: 'joca@gmail.com'
-                }
-            })
+            //dispatch({
+                //type: 'user/login',
+                //payload: {
+                //name: 'Joca',
+                //email: 'joca@gmail.com'
+                 //}
+             //})
         } else  {
-            dispatch({
-                type: 'user/logout'
+            dispatch(logout({}))
 
-            })
+
+            //forma antiga:
+            // dispatch({
+            //     type: 'user/logout'
+
+            // })
         }
     }
     

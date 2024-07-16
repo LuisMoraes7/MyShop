@@ -3,6 +3,7 @@ import * as S from './styles-cart'
 import { RootState } from '../../redux/store';
 import { Product } from '../../Data/products';
 import { AiFillDelete } from 'react-icons/ai'
+import { removeProduct } from '../../redux/Cart/cart-slice';
 
 
 interface CartProps{
@@ -26,10 +27,14 @@ export const Cart: React.FC<CartProps> = ({ showCart  }) => {
                 { cart.map((product: Product) => (
                     <S.CartProductItem key={product.id} >
                         {product.title} :  <strong>${product.price}</strong>
-                        <S.ButtonToRemove onClick={() => dispatch({
-                            type: 'cart/remove-product',
-                            payload: product,
-                        })}>Remover <AiFillDelete/></S.ButtonToRemove>
+                        <S.ButtonToRemove 
+                        onClick={() => {
+                            dispatch(removeProduct(product))
+                            //metodo antigo:
+                            //() => dispatch({
+                                //type: 'cart/remove-product',
+                                //payload: product,
+                        }}>Remover <AiFillDelete/></S.ButtonToRemove>
                         </S.CartProductItem>
                     
                 )) } 
