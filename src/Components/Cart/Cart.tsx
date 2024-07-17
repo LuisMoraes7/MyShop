@@ -1,6 +1,5 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import * as S from './styles-cart'
-import { RootState } from '../../redux/store';
 import { Product } from '../../Data/products';
 import { AiFillDelete } from 'react-icons/ai'
 import { removeProduct } from '../../redux/Cart/cart-slice';
@@ -8,11 +7,11 @@ import { removeProduct } from '../../redux/Cart/cart-slice';
 
 interface CartProps{
     showCart: boolean,
-    
+    cart: Product[]
 }
 
-export const Cart: React.FC<CartProps> = ({ showCart  }) => {
-    const cart = useSelector((state: RootState) => state.cart.cart)
+export const Cart: React.FC<CartProps> = ({ showCart, cart  }) => {
+    
     const total = cart.reduce((totalCart: number, product: Product) => {
         return totalCart + product.price
     }, 0)
@@ -39,7 +38,7 @@ export const Cart: React.FC<CartProps> = ({ showCart  }) => {
                     
                 )) } 
             </S.CartList>
-            <S.CartTotal>Total: ${total}</S.CartTotal>
+            <S.CartTotal data-testid="total ">Total: ${total}</S.CartTotal>
         </S.Container>
     )
 }

@@ -14,7 +14,7 @@ interface HeaderProps{
 }
 export const Header: React.FC<HeaderProps> = ({ showCart, setShowCart }) => {
     
-    
+    const cart = useSelector((state: RootState) => state.cart.cart)
     const user = useSelector((state: RootState) => state.user.user);
     const isLogged = user !== null;
     const dispatch = useDispatch()
@@ -68,7 +68,7 @@ export const Header: React.FC<HeaderProps> = ({ showCart, setShowCart }) => {
                  </S.ButtonWrapper>  
             </S.Wrapper>
             
-        <Cart showCart={showCart}></Cart>
+        <Cart cart={cart} showCart={showCart}></Cart>
         </S.StyledHeader>
     )
 }
